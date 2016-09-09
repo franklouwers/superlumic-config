@@ -6,27 +6,19 @@
 - name: tap homebrew/dupes
   homebrew_tap: tap=homebrew/dupes state=present
 
-- name: tap homebrew/completions
-  homebrew_tap: tap=homebrew/completions state=present
-
 - name: install developer brew applications
   homebrew: name={{item}} state=latest
   with_items:
     - wget
     - pwgen
     - htop
-    - httpie
     - watch
     - rsync
-    - awscli
-    - pinentry
-    - lastpass-cli
 
 - name: install developer cask applications
   homebrew_cask: name={{item}} state=present
   with_items:
     - java
-    - gpgtools
     - dash
     - iterm2
 
@@ -41,16 +33,3 @@
 - name: Write out gitconfig
   template: src=gitconfig.j2 dest={{ home_dir }}/.gitconfig
 
-- name: Install completions
-  homebrew: name={{item}} state=latest
-  with_items:
-    - docker-completion
-    - docker-compose-completion
-    - gem-completion
-    - mix-completion
-    - pip-completion
-    - rails-completion
-    - rake-completion
-    - ruby-completion
-    - cap-completion
-    - bundler-completion

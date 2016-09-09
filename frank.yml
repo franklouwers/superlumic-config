@@ -1,0 +1,123 @@
+---
+- hosts: localhost
+  connection: local
+
+  vars:
+    - superlimic_config_repo: https://github.com/franklouwers/superlumic-config.git
+    - user_name: frank
+    - computername: tembo
+    - home_dir: "/Users/{{ user_name }}/"
+    - user_email: frank@louwers.be
+    - github_user_name: franklouwers
+    - git_user_name: Frank Louwers
+    - git_user_email: "{{ user_email }}"
+    - apple_id_email: frank@openminds.be
+    - src_dir: "{{ home_dir }}/src/"
+    - settings_export_dir: "{{ home_dir }}/tmp/SettingsExports"
+    # Set these in secrets file:
+    # github_auth_token
+    # apple_id_password
+
+  vars_files:
+    - vars/osx_defaults.yml
+    - vars/sublime_text_packages.yml
+    - vars/{{ user_name }}-secrets.yml
+
+  roles:
+    - { role: profile-all, tags: base }
+    - { role: profile-developer, tags: base-dev }
+    - { role: sublimetext3, tags: sublime }
+    - { role: ruby, tags: ruby }
+
+  tasks:
+    - name: install personal cask applications
+      homebrew_cask: name={{item}} state=present
+      with_items:
+        - dropbox
+        - keepingyouawake
+        - calibre
+        - charles
+        - chefdk
+        - docker
+        - google-chrome
+        - firefox
+        - handbrake
+        - hipchat
+        - mou
+        - spotify
+        - tripmode
+        - whatsapp
+        - tunnelblick
+        - hosts
+    
+    - name: Create local bin dir
+      file: path="{{ home_dir }}/bin" state=directory
+
+    - name: Copy local 'binaries'
+      copy: src=files/frank/bin/
+            dest="{{ home_dir }}/bin/"
+
+    - name: Powerline Shell Prompt
+      git: repo=https://github.com/milkbikis/powerline-shell
+           dest="{{ home_dir }}/bin/powerline-shell"
+           version="master"
+
+    - name: Run install for powerline shell prompt
+      command: "python install.py"
+      args:
+        chdir: "{{ home_dir }}/bin/powerline-shell/"
+
+    - name: homebrew taps
+      homebrew_tap: tap={{ item }} state=present
+      with_items:
+        - homebrew/fuse
+        - Caskroom/cask
+
+    - name: install personal brew applications
+      homebrew: name={{item}} state=latest
+      with_items:
+        - mas
+        - certbot
+        - z
+        - ipcalc
+        - jq
+        - neovim
+
+    - name: "[App Store] Sign out of the Mac App Store"
+      command: mas signout
+
+    - name: "[App Store] Sign in to the Mac App Store"
+      command: mas signin {{ apple_id_email }} "{{ apple_id_password }}"
+
+    - name: "[App Store] See which apps are already installed"
+      command: bash -c "mas list | cut -f 1 -d ' '"
+      register: mas_list
+
+    - name: "[App Store] Install Mac App Store applications"
+      command: mas install {{ item.id }}
+      when: item.id not in mas_list.stdout_lines
+      with_items:
+        - { id: "540348655", name: "Monosnap" }
+        - { id: "715768417", name: "Microsoft Remote Desktop"}
+        - { id: "410628904", name: "Wunderlist"}
+        - { id: "557168941", name: "Tweetbot" }
+        - { id: "407963104", name: "Pixelmator" }
+        - { id: "413857545", name: "Divvy" }
+        - { id: "409183694", name: "Keynote" }
+        - { id: "409201541", name: "Pages" }
+        - { id: "409203825", name: "Numbers" }
+        - { id: "443987910", name: "1Password" }
+        - { id: "405843582", name: "Alfred" }
+        - { id: "803453959", name: "Slack" }
+        - { id: "921923693", name: "LibreOffice" }
+
+    - name: create .ssh directory
+      file:
+        path: "{{ home_dir }}/.ssh/"
+        state: directory
+        mode: 0700
+
+    - name: personal ssh config
+      copy:
+        src: files/ssh_config
+        dest: "{{ home_dir }}/.ssh/ssh_config"

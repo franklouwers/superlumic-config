@@ -14,28 +14,14 @@
             dest=/usr/local/bin/superlumic
             mode=0775
 
-- name: install cask applications for all users
-  homebrew_cask: name={{item}} state=present
-  with_items:
-    - google-drive
-    - google-chrome
-    - vlc
-    - lastpass
-    - slack
 
 - name: install general brew applications
   homebrew: name={{item}} state=latest
   with_items:
-    - bash-completion
-    - lastpass-cli
-    - the_silver_searcher
     - ack
     - gnu-tar
     - git
     - git-extras
-
-- name: Generate SSH keypair
-  user: name={{ user_name }} generate_ssh_key=yes ssh_key_bits=2048 ssh_key_file=.ssh/id_rsa
 
 - name: Disable Guest User
   command: defaults write /Library/Preferences/com.apple.loginwindow GuestEnabled -bool NO
