@@ -132,7 +132,7 @@ ansible-galaxy install -f -r config/requirements.yml -p roles
 
 if [ -f "config/$username.yml" ]; then
     setStatusMessage "Running the ansible playbook for $username"
-    ansible-playbook -i "localhost," config/$username.yml
+    ansible-playbook -i "localhost," config/$username.yml --ask-vault-pass
 else
     if [ "travis" = "$username" ]; then
         setStatusMessage "Running the ansible playbook for $username but use roderik.yml as fallback"

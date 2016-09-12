@@ -26,7 +26,7 @@
   roles:
     - { role: profile-all, tags: base }
     - { role: profile-developer, tags: base-dev }
-    - { role: sublimetext3, tags: sublime }
+  #  - { role: sublimetext3, tags: sublime }
     - { role: ruby, tags: ruby }
 
   tasks:
@@ -49,7 +49,10 @@
         - whatsapp
         - tunnelblick
         - hosts
-    
+        - alfred
+        - adguard
+        - oki-postscript-drivers
+
     - name: Create local bin dir
       file: path="{{ home_dir }}/bin" state=directory
 
@@ -72,6 +75,8 @@
       with_items:
         - homebrew/fuse
         - Caskroom/cask
+        - neovim/neovim
+        - caskroom/eid
 
     - name: install personal brew applications
       homebrew: name={{item}} state=latest
@@ -82,6 +87,7 @@
         - ipcalc
         - jq
         - neovim
+        - mtr
 
     - name: "[App Store] Sign out of the Mac App Store"
       command: mas signout
@@ -107,7 +113,6 @@
         - { id: "409201541", name: "Pages" }
         - { id: "409203825", name: "Numbers" }
         - { id: "443987910", name: "1Password" }
-        - { id: "405843582", name: "Alfred" }
         - { id: "803453959", name: "Slack" }
         - { id: "921923693", name: "LibreOffice" }
 

@@ -11,8 +11,8 @@
   command: rbenv root
   register: rbenv_root
 
-# - name: "[Ruby]" Ensure rbenv root dir exists
-  # file: path="{{ rbenv_root }}" state=directory
+- name: "[Ruby] Ensure rbenv root dir exists"
+  file: path="{{ rbenv_root }}" state=directory
 
 - name: "[Ruby] Set default gems for rbenv"
   copy: src=files/rbenv-default-gems dest="{{ rbenv_root.stdout_lines[0] }}/default-gems"
