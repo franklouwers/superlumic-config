@@ -43,7 +43,6 @@
         - firefox
         - handbrake
         - hipchat
-        - mou
         - spotify
         - tripmode
         - whatsapp
@@ -52,6 +51,11 @@
         - alfred
         - adguard
         - oki-postscript-drivers
+        - ax88179
+        - pl2303
+        - teamdrive
+        - virtualbox
+        - typora
 
     - name: Create local bin dir
       file: path="{{ home_dir }}/bin" state=directory
@@ -78,6 +82,9 @@
         - neovim/neovim
         - caskroom/eid
 
+    - name: homebrew openminds tap
+      homebrew: name=openminds/private url=git@gitlab.openminds.be:openminds/homebrew-tap.git
+
     - name: install personal brew applications
       homebrew: name={{item}} state=latest
       with_items:
@@ -88,6 +95,7 @@
         - jq
         - neovim
         - mtr
+        - gom-awesome
 
     - name: "[App Store] Sign out of the Mac App Store"
       command: mas signout
