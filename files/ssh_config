@@ -3,3 +3,22 @@ ServerAliveInterval 15
 ServerAliveCountMax 6
 Compression yes
 
+
+Host november.openminds.be
+  user frank
+
+Host cs1-bebru2.openminds.be
+  user frank
+
+Host cs1-dcg*
+  user frank
+
+Host *.openminds.be
+  ForwardAgent yes
+
+Host *.ys.be
+  ForwardAgent yes
+
+Host *
+  user root
+  KexAlgorithms +diffie-hellman-group1-sha1
