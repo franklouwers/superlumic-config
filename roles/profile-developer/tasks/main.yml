@@ -15,12 +15,12 @@
     - watch
     - rsync
 
-- name: install developer cask applications
-  homebrew_cask: name={{item}} state=present
-  with_items:
-    - java
-    - dash
-    - iterm2
+    #- name: install developer cask applications
+    #homebrew_cask: name={{item}} state=present
+    #  with_items:
+      #- java
+      #- dash
+      #- iterm2
 
 #- name: Copy dotfiles
 #  copy: src=files/{{ user_name }}/{{ item }} dest={{ home_dir }}/.{{ item }}

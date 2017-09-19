@@ -11,7 +11,7 @@ osx_defaults:
   - { domain: "NSGlobalDomain", type: "integer", key: "com.apple.mouse.tapBehavior",         value: 1 }
   - { domain: "NSGlobalDomain", type: "float",   key: "com.apple.mouse.scaling",             value: 4.5 }
   - { domain: "NSGlobalDomain", type: "boolean", key: "ApplePressAndHoldEnabled",            value: false }
-  - { domain: "NSGlobalDomain", type: "integer", key: "InitialKeyRepeat",                    value: 15 }
+    #  - { domain: "NSGlobalDomain", type: "integer", key: "InitialKeyRepeat",                    value: 15 }
   - { domain: "NSGlobalDomain", type: "string",  key: "AppleShowScrollBars",                 value: "Always" }
   - { domain: "NSGlobalDomain", type: "boolean", key: "NSNavPanelExpandedStateForSaveMode",  value: true }
   - { domain: "NSGlobalDomain", type: "boolean", key: "NSNavPanelExpandedStateForSaveMode2", value: true }
@@ -37,10 +37,10 @@ osx_defaults:
   - { domain: "com.apple.desktopservices", key: "DSDontWriteNetworkStores", type: bool, value: true }
 
   # Enable AirDrop over Ethernet and on unsupported Macs running Lion
-  - { domain: "com.apple.NetworkBrowser", key: "BrowseAllInterfaces", type: bool, value: true }
+  #- { domain: "com.apple.NetworkBrowser", key: "BrowseAllInterfaces", type: bool, value: true }
 
   # Don’t show Dashboard as a Space
-  - { domain: "com.apple.dock", key: "dashboard-in-overlay", type: bool, value: true }
+  #- { domain: "com.apple.dock", key: "dashboard-in-overlay", type: bool, value: true }
 
   # Don’t automatically rearrange Spaces based on most recent use
-  - { domain: "com.apple.dock", key: "mru-spaces", type: bool, value: false }
+  #- { domain: "com.apple.dock", key: "mru-spaces", type: bool, value: false }

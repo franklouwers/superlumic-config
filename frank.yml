@@ -11,7 +11,7 @@
     - github_user_name: franklouwers
     - git_user_name: Frank Louwers
     - git_user_email: "{{ user_email }}"
-    - apple_id_email: frank@openminds.be
+    - apple_id_email: frank@tembo.be
     - src_dir: "{{ home_dir }}/src/"
     - settings_export_dir: "{{ home_dir }}/tmp/SettingsExports"
     # Set these in secrets file:
