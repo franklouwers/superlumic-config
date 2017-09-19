@@ -20,7 +20,7 @@
 
   vars_files:
     - vars/osx_defaults.yml
-    - vars/sublime_text_packages.yml
+  #    - vars/sublime_text_packages.yml
     - vars/{{ user_name }}-secrets.yml
 
   roles:
@@ -42,7 +42,6 @@
         - google-chrome
         - firefox
         - handbrake
-        - hipchat
         - spotify
         - tripmode
         - whatsapp
@@ -50,12 +49,19 @@
         - hosts
         - alfred
         - adguard
-        - oki-postscript-drivers
         - ax88179
         - pl2303
         - teamdrive
         - virtualbox
         - typora
+        - carbon-copy-cloner
+        - eid-be
+        - java
+        - libreoffice
+        - oki-mc573series-driver
+        - real-vnc
+        - virtualbox
+
 
     - name: Create local bin dir
       file: path="{{ home_dir }}/bin" state=directory
@@ -64,22 +70,11 @@
       copy: src=files/frank/bin/
             dest="{{ home_dir }}/bin/"
 
-    - name: Powerline Shell Prompt
-      git: repo=https://github.com/milkbikis/powerline-shell
-           dest="{{ home_dir }}/bin/powerline-shell"
-           version="master"
-
-    - name: Run install for powerline shell prompt
-      command: "python install.py"
-      args:
-        chdir: "{{ home_dir }}/bin/powerline-shell/"
-
     - name: homebrew taps
       homebrew_tap: tap={{ item }} state=present
       with_items:
         - homebrew/fuse
         - Caskroom/cask
-        - neovim/neovim
         - caskroom/eid
 
     - name: homebrew openminds tap
@@ -93,9 +88,11 @@
         - z
         - ipcalc
         - jq
-        - neovim
         - mtr
         - gom-awesome
+        - unrar
+        - bunka
+        - csshx
 
     - name: "[App Store] Sign out of the Mac App Store"
       command: mas signout
@@ -113,7 +110,6 @@
       with_items:
         - { id: "540348655", name: "Monosnap" }
         - { id: "715768417", name: "Microsoft Remote Desktop"}
-        - { id: "410628904", name: "Wunderlist"}
         - { id: "557168941", name: "Tweetbot" }
         - { id: "407963104", name: "Pixelmator" }
         - { id: "413857545", name: "Divvy" }
@@ -122,7 +118,6 @@
         - { id: "409203825", name: "Numbers" }
         - { id: "443987910", name: "1Password" }
         - { id: "803453959", name: "Slack" }
-        - { id: "921923693", name: "LibreOffice" }
 
     - name: create .ssh directory
       file:
