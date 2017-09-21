@@ -10,7 +10,7 @@ osx_defaults:
 
   - { domain: "NSGlobalDomain", type: "integer", key: "com.apple.mouse.tapBehavior",         value: 1 }
   - { domain: "NSGlobalDomain", type: "float",   key: "com.apple.mouse.scaling",             value: 4.5 }
-  - { domain: "NSGlobalDomain", type: "boolean", key: "ApplePressAndHoldEnabled",            value: false }
+  - { domain: "NSGlobalDomain", type: "boolean", key: "ApplePressAndHoldEnabled",            value: true }
     #  - { domain: "NSGlobalDomain", type: "integer", key: "InitialKeyRepeat",                    value: 15 }
   - { domain: "NSGlobalDomain", type: "string",  key: "AppleShowScrollBars",                 value: "Always" }
   - { domain: "NSGlobalDomain", type: "boolean", key: "NSNavPanelExpandedStateForSaveMode",  value: true }

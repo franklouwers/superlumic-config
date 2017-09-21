@@ -5,9 +5,9 @@
   become: yes
   register: fde_status
 
-- name: Abort if Disk not encrypted
-  fail: msg="Sorry, Please turn on FileVault Full Disk Encryption before proceeding"
-  when: fde_status.stdout != "FileVault is On."
+#- name: Abort if Disk not encrypted
+#  fail: msg="Sorry, Please turn on FileVault Full Disk Encryption before proceeding"
+#  when: fde_status.stdout != "FileVault is On."
 
 - name: Copy superlumic script into /usr/local/bin
   template: src=superlumic.sh.j2
