@@ -20,4 +20,4 @@
 - name: "[Ruby] install ruby versions"
   command: rbenv install -s {{ item }}
   with_items:
-    - 2.4.2
+    - 2.5.1

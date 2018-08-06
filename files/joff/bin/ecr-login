@@ -1,3 +1,0 @@
-#!/usr/bin/env bash
-export AWS_DEFAULT_REGION=us-west-2
-eval "$(aws ecr get-login --region us-west-2)"
