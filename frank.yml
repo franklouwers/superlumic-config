@@ -2,6 +2,11 @@
 - hosts: localhost
   connection: local
 
+  ### Not here yet: 
+  # - Act On Mail
+  # - MS Office enterprise
+  # Safari extensions
+
   vars:
     - superlimic_config_repo: https://github.com/franklouwers/superlumic-config.git
     - user_name: frank
@@ -11,6 +16,7 @@
     - github_user_name: franklouwers
     - git_user_name: Frank Louwers
     - git_user_email: "{{ user_email }}"
+    - git_signing_key: EF7394AA445AECCC
     - apple_id_email: frank@tembo.be
     - src_dir: "{{ home_dir }}/src/"
     - settings_export_dir: "{{ home_dir }}/tmp/SettingsExports"
@@ -28,6 +34,8 @@
     - { role: profile-developer, tags: base-dev }
   #  - { role: sublimetext3, tags: sublime }
     - { role: ruby, tags: ruby }
+    - { role: zsh, tags: zsh }
+    - { role: frank-term, tags: terminal }
 
   tasks:
     - name: homebrew taps
@@ -37,6 +45,7 @@
         - Caskroom/cask
         - caskroom/eid
         - caskroom/drivers
+        - homebrew/cask-fonts
     - name: install personal cask applications
       homebrew_cask: name={{item}} state=present
       with_items:
@@ -70,6 +79,9 @@
         - adobe-acrobat-reader
         - docker
         - telegram
+        - grammarly
+        - gpg-suite
+        - backblaze
 
 
     - name: Create local bin dir
@@ -83,6 +95,7 @@
     - name: install personal brew applications
       homebrew: name={{item}} state=latest
       with_items:
+        - node
         - mas
         - certbot
         - z
@@ -99,6 +112,7 @@
         - telnet
         - p7zip
         - go
+        - gpg-agent
 
           #    - name: "[App Store] Sign out of the Mac App Store"
           #      command: mas signout

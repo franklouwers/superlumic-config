@@ -1,0 +1,24 @@
+---
+- name: register the current shell
+  shell: echo $SHELL
+  register: current_shell_result
+  changed_when: False
+
+- name: change shell for the current user
+  become: yes
+  shell: chsh -s /bin/zsh {{ lookup('env','USER') }}
+  when: current_shell_result.stdout != "/bin/zsh"
+
+
+- name: install zpreztorc
+  git: repo="https://github.com/sorin-ionescu/prezto.git" "dest={{ home_dir }}/.zprezto" update=no recursive=yes
+
+- name: install my-zsh-preztoconfig
+  git: repo="https://github.com/franklouwers/dotfiles-zsh.git" "dest={{ home_dir }}/.dotfiles-zsh" update=no
+
+- name: link files
+  file: path="{{ home_dir }}/.{{ item }}" src="{{ home_dir }}/.dotfiles-zsh/{{ item }}"
+  with_items:
+    - zpreztorc
+    - zprofile
+    - zshrc

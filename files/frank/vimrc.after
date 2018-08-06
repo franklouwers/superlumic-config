@@ -1,0 +1,7 @@
+" default geen line numbers
+set nonumber
+
+" gruvbox colorscheme
+set bg=dark
+colorscheme gruvbox
+
