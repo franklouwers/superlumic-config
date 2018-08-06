@@ -57,9 +57,6 @@
         - hosts
         - alfred
         - adguard
-        - ax88179
-        - pl2303
-        - teamdrive
         - virtualbox
         - typora
         - carbon-copy-cloner
@@ -67,9 +64,11 @@
         - keybase
         - java
         - libreoffice
-        - oki-mc573series-driver
         - real-vnc
         - virtualbox
+        - hazel
+        - adobe-acrobat-reader
+        - docker
 
 
     - name: Create local bin dir
@@ -80,11 +79,6 @@
             dest="{{ home_dir }}/bin/"
 
 
-    - name: homebrew openminds tap
-      homebrew_tap:
-        name: openminds/private 
-        url: 'git@gitlab.openminds.be:openminds/homebrew-tap.git'
-
     - name: install personal brew applications
       homebrew: name={{item}} state=latest
       with_items:
@@ -94,19 +88,16 @@
         - ipcalc
         - jq
         - mtr
-        - gom-awesome
         - unrar
-        - bunka
         - csshx
         - colordiff
-        - gpg
-        - gpg-agent 
-        - pinentry-mac
         - macvim
         - grep
         - recode
         - nmap
         - telnet
+        - p7zip
+        - go
 
           #    - name: "[App Store] Sign out of the Mac App Store"
           #      command: mas signout
@@ -126,12 +117,13 @@
         - { id: "715768417", name: "Microsoft Remote Desktop"}
         - { id: "557168941", name: "Tweetbot" }
         - { id: "407963104", name: "Pixelmator" }
-        - { id: "413857545", name: "Divvy" }
         - { id: "409183694", name: "Keynote" }
         - { id: "409201541", name: "Pages" }
         - { id: "409203825", name: "Numbers" }
         - { id: "443987910", name: "1Password" }
         - { id: "803453959", name: "Slack" }
+        - { id: "460866217", name: "Simple Desktops" }
+        - { id: "944960179", name: "Any.do" }
 
     - name: create .ssh directory
       file:
