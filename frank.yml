@@ -69,6 +69,7 @@
         - hazel
         - adobe-acrobat-reader
         - docker
+        - telegram
 
 
     - name: Create local bin dir
@@ -124,6 +125,10 @@
         - { id: "803453959", name: "Slack" }
         - { id: "460866217", name: "Simple Desktops" }
         - { id: "944960179", name: "Any.do" }
+        - { id: "1063996724", name: "Tyme2" }
+        - { id: "1170434079", name: "ScanSnap Cloud" }
+        - { id: "1327661892", name: "XMind ZEN" }
+
 
     - name: create .ssh directory
       file:
