@@ -10,3 +10,14 @@
 - name: install editorconfig-vim
   git: repo="https://github.com/editorconfig/editorconfig-vim.git" "dest={{ home_dir }}/.janus/editorconfig-vim"
 
+- name: install Rykka/InstantRst
+  git: repo="https://github.com/gu-fan/InstantRst" "dest={{ home_dir }}/.janus/InstantRst"
+
+- name: install Rykka/riv.vim
+  git: repo="https://github.com/gu-fan/riv.vim" "dest={{ home_dir }}/.janus/riv.vim"
+
+- name: install InstantRst.py
+  pip: name=https://github.com/Rykka/instant-rst.py/archive/master.zip
+
+- name: install gevent pip modules
+  pip: name=gevent-websocket

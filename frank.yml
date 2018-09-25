@@ -82,6 +82,8 @@
         - grammarly
         - gpg-suite
         - backblaze
+        - mactex
+        - rocket-chat # open-xchange chat tool
 
 
     - name: Create local bin dir
@@ -113,6 +115,7 @@
         - p7zip
         - go
         - gpg-agent
+        - sphinx-doc
 
           #    - name: "[App Store] Sign out of the Mac App Store"
           #      command: mas signout
