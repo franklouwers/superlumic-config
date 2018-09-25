@@ -1,0 +1,5 @@
+" dingen van frank
+set nonumber
+
+" w!! = sudo write :)
+cnoremap w!! execute 'silent! write !sudo tee % >/dev/null' <bar> edit!

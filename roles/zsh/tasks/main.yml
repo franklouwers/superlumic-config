@@ -11,13 +11,13 @@
 
 
 - name: install zpreztorc
-  git: repo="https://github.com/sorin-ionescu/prezto.git" "dest={{ home_dir }}/.zprezto" update=no recursive=yes
+  git: repo="https://github.com/sorin-ionescu/prezto.git" dest="{{ home_dir }}/.zprezto" update=no recursive=yes
 
 - name: install my-zsh-preztoconfig
-  git: repo="https://github.com/franklouwers/dotfiles-zsh.git" "dest={{ home_dir }}/.dotfiles-zsh" update=no
+  git: repo="https://github.com/franklouwers/dotfiles-zsh.git" dest="{{ home_dir }}/.dotfiles-zsh" update=no
 
 - name: link files
-  file: path="{{ home_dir }}/.{{ item }}" src="{{ home_dir }}/.dotfiles-zsh/{{ item }}"
+  file: path="{{ home_dir }}/.{{ item }}" src="{{ home_dir }}/.dotfiles-zsh/{{ item }}" state=link
   with_items:
     - zpreztorc
     - zprofile

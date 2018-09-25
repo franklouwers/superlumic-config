@@ -1,23 +1,23 @@
 ---
 - name: link vimrc-after
-  file: path="{{ home_dir }}/.vimrc.after" src="frank/files/vimrc.after"
+  file: path="{{ home_dir }}/.vimrc.after" src="{{ role_path }}/files/vimrc.after" state="link"
 - name: link vimrc-before
-  file: path="{{ home_dir }}/.vimrc.before" src="frank/files/vimrc.before"
+  file: path="{{ home_dir }}/.vimrc.before" src="{{ role_path }}/files/vimrc.before" state="link"
 
 - name: install gruvbox colorscheme
-  git: repo="https://github.com/morhetz/gruvbox.git" "dest={{ home_dir }}/.janus/gruvbox"
+  git: repo="https://github.com/morhetz/gruvbox.git" dest="{{ home_dir }}/.janus/gruvbox"
 
 - name: install editorconfig-vim
-  git: repo="https://github.com/editorconfig/editorconfig-vim.git" "dest={{ home_dir }}/.janus/editorconfig-vim"
+  git: repo="https://github.com/editorconfig/editorconfig-vim.git" dest="{{ home_dir }}/.janus/editorconfig-vim"
 
 - name: install Rykka/InstantRst
-  git: repo="https://github.com/gu-fan/InstantRst" "dest={{ home_dir }}/.janus/InstantRst"
+  git: repo="https://github.com/gu-fan/InstantRst" dest="{{ home_dir }}/.janus/InstantRst"
 
 - name: install Rykka/riv.vim
-  git: repo="https://github.com/gu-fan/riv.vim" "dest={{ home_dir }}/.janus/riv.vim"
+  git: repo="https://github.com/gu-fan/riv.vim" dest="{{ home_dir }}/.janus/riv.vim"
 
-- name: install InstantRst.py
-  pip: name=https://github.com/Rykka/instant-rst.py/archive/master.zip
+#- name: install InstantRst.py
+#  pip: name=https://github.com/Rykka/instant-rst.py/archive/master.zip
 
 - name: install gevent pip modules
   pip: name=gevent-websocket
