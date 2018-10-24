@@ -6,6 +6,8 @@
   # - Act On Mail
   # - MS Office enterprise
   # Safari extensions
+  # abby scan thing sprint
+  #
 
   vars:
     - superlimic_config_repo: https://github.com/franklouwers/superlumic-config.git
@@ -116,12 +118,13 @@
         - python
         - python@2
         - sphinx-doc
+        - trash
 
-          #    - name: "[App Store] Sign out of the Mac App Store"
-          #      command: mas signout
+    - name: "[App Store] Sign out of the Mac App Store"
+      command: mas signout
 
-          #    - name: "[App Store] Sign in to the Mac App Store"
-          #      command: mas signin {{ apple_id_email }} "{{ apple_id_password }}"
+    - name: "[App Store] Sign in to the Mac App Store"
+      command: mas signin {{ apple_id_email }} "{{ apple_id_password }}"
 
     - name: "[App Store] See which apps are already installed"
       command: bash -c "mas list | cut -f 1 -d ' '"
@@ -129,25 +132,26 @@
 
 
 # mas broken in Mojave :(
+# Update: mas fixed for Mojave! (1.4.3)
 
-#    - name: "[App Store] Install Mac App Store applications"
-#      command: mas install {{ item.id }}
-#      when: item.id not in mas_list.stdout_lines
-#      with_items:
-#        - { id: "540348655", name: "Monosnap" }
-#        - { id: "1295203466", name: "Microsoft Remote Desktop 10"}
-#        - { id: "557168941", name: "Tweetbot" }
-#        - { id: "407963104", name: "Pixelmator" }
-#        - { id: "409183694", name: "Keynote" }
-#        - { id: "409201541", name: "Pages" }
-#        - { id: "409203825", name: "Numbers" }
-#        - { id: "443987910", name: "1Password" }
-#        - { id: "803453959", name: "Slack" }
-#        - { id: "460866217", name: "Simple Desktops" }
-#        - { id: "944960179", name: "Any.do" }
-#        - { id: "1063996724", name: "Tyme2" }
-#        - { id: "1170434079", name: "ScanSnap Cloud" }
-#        - { id: "1327661892", name: "XMind ZEN" }
+    - name: "[App Store] Install Mac App Store applications"
+      command: mas install {{ item.id }}
+      when: item.id not in mas_list.stdout_lines
+      with_items:
+        - { id: "1333542190", name: "1Password 7" }
+        - { id: "409183694", name: "Keynote" }
+        - { id: "540348655", name: "Monosnap" }
+        - { id: "1295203466", name: "Microsoft Remote Desktop 10"}
+        - { id: "1327661892", name: "XMind ZEN" }
+        - { id: "1063996724", name: "Tyme2" }
+        - { id: "1384080005", name: "Tweetbot" }
+        - { id: "803453959", name: "Slack" }
+        - { id: "409201541", name: "Pages" }
+        - { id: "407963104", name: "Pixelmator" }
+        - { id: "1170434079", name: "ScanSnap Cloud" }
+        - { id: "409203825", name: "Numbers" }
+        - { id: "460866217", name: "Simple Desktops" }
+        - { id: "944960179", name: "Any.do" }
 
 
     - name: create .ssh directory
