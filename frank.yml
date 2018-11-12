@@ -38,7 +38,7 @@
     - { role: ruby, tags: ruby }
     - { role: zsh, tags: zsh }
     - { role: frank-terminal, tags: terminal }
-    - { role: vim, tags: vim }
+      #    - { role: vim, tags: vim }
 
   tasks:
     - name: homebrew taps
